@@ -1,0 +1,17 @@
+name: docker-lab
+services:
+  attacker:
+    container_name: attacker
+    image: kalilinux/kali-rolling
+    networks:
+      default: null
+    tty: true
+  ubuntu-target:
+    container_name: ubuntu-target
+    image: ubuntu:22.04
+    networks:
+      default: null
+    tty: true
+networks:
+  default:
+    name: security-lab

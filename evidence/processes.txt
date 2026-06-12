@@ -1,0 +1,5 @@
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.0   4504  3840 pts/0    Ss+  06:06   0:00 /bin/bash
+root           9  0.0  0.0   4636  3836 pts/1    Ss+  06:13   0:00 bash
+root        3969  0.0  0.0  15444  5556 ?        Ss   06:15   0:00 sshd: /usr/sbin/sshd [listener] 0 of 10-100 startups
+root        4312  0.0  0.0   7072  3076 ?        Rs   06:33   0:00 ps aux

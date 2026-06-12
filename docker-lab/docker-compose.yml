@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+
+  ubuntu-target:
+    image: ubuntu:22.04
+    container_name: ubuntu-target
+    tty: true
+
+  attacker:
+    image: kalilinux/kali-rolling
+    container_name: attacker
+    tty: true
+
+networks:
+  default:
+    name: security-lab

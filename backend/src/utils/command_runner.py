@@ -1,0 +1,14 @@
+import subprocess
+
+
+def run_command(command):
+    try:
+        result = subprocess.check_output(
+            command,
+            shell=True,
+            text=True
+        )
+        return result
+
+    except Exception as e:
+        return f"ERROR: {str(e)}"

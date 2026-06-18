@@ -1,7 +1,261 @@
 {
-    "processes": "USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\nroot           1  0.0  0.0   4636  3816 pts/0    Ss+  06:01   0:00 /bin/bash\nroot          32  0.0  0.0   4636  3664 pts/1    Ss+  06:07   0:00 bash\nroot          42  0.0  0.0  15444  4316 ?        Ss   06:07   0:00 sshd: /usr/sbin/sshd [listener] 0 of 10-100 startups\nroot          89  0.0  0.0   3544  1912 pts/1    S    06:27   0:00 nc -lvnp 4444\nroot          91  100  0.0   4372  3188 pts/1    R    06:28   0:27 /bin/bash ./tmp/miner.sh\nroot          92  0.0  0.0   7072  3024 ?        Rs   06:28   0:00 ps aux\n",
-    "network_activity": "Netid State  Recv-Q Send-Q Local Address:Port  Peer Address:PortProcess                      \nudp   UNCONN 0      0         127.0.0.11:52349      0.0.0.0:*                                \ntcp   LISTEN 0      4096      127.0.0.11:46671      0.0.0.0:*                                \ntcp   LISTEN 0      1            0.0.0.0:4444       0.0.0.0:*    users:((\"nc\",pid=89,fd=3))  \ntcp   LISTEN 0      128          0.0.0.0:22         0.0.0.0:*    users:((\"sshd\",pid=42,fd=3))\ntcp   LISTEN 0      128             [::]:22            [::]:*    users:((\"sshd\",pid=42,fd=4))\n",
-    "users": "root:x:0:0:root:/root:/bin/bash\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\nbin:x:2:2:bin:/bin:/usr/sbin/nologin\nsys:x:3:3:sys:/dev:/usr/sbin/nologin\nsync:x:4:65534:sync:/bin:/bin/sync\ngames:x:5:60:games:/usr/games:/usr/sbin/nologin\nman:x:6:12:man:/var/cache/man:/usr/sbin/nologin\nlp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin\nmail:x:8:8:mail:/var/mail:/usr/sbin/nologin\nnews:x:9:9:news:/var/spool/news:/usr/sbin/nologin\nuucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin\nproxy:x:13:13:proxy:/bin:/usr/sbin/nologin\nwww-data:x:33:33:www-data:/var/www:/usr/sbin/nologin\nbackup:x:34:34:backup:/var/backups:/usr/sbin/nologin\nlist:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin\nirc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin\nnobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin\n_apt:x:100:65534::/nonexistent:/usr/sbin/nologin\nsystemd-network:x:101:102:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin\nsystemd-resolve:x:102:103:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin\nmessagebus:x:103:104::/nonexistent:/usr/sbin/nologin\nsystemd-timesync:x:104:105:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin\nsshd:x:105:65534::/run/sshd:/usr/sbin/nologin\ntestuser:x:1000:1000::/home/testuser:/bin/sh\n",
-    "cron_jobs": "* * * * * /tmp/backdoor.sh\n",
-    "login_activity": "testuser pts/2        172.18.0.2       Mon Jun 15 05:17    gone - no logout\ntestuser pts/2        172.18.0.2       Fri Jun 12 06:22 - 05:17 (2+22:54)\n\nwtmp begins Fri Jun 12 06:22:39 2026\n"
+    "processes": [
+        {
+            "user": "root",
+            "pid": "1",
+            "cpu": "0.0",
+            "memory": "0.0",
+            "command": "/bin/bash"
+        },
+        {
+            "user": "root",
+            "pid": "15",
+            "cpu": "0.0",
+            "memory": "0.0",
+            "command": "bash"
+        },
+        {
+            "user": "root",
+            "pid": "25",
+            "cpu": "0.0",
+            "memory": "0.0",
+            "command": "sshd: /usr/sbin/sshd [listener] 0 of 10-100 startups"
+        },
+        {
+            "user": "root",
+            "pid": "32",
+            "cpu": "99.9",
+            "memory": "0.0",
+            "command": "/bin/bash /tmp/miner.sh"
+        },
+        {
+            "user": "root",
+            "pid": "36",
+            "cpu": "0.0",
+            "memory": "0.0",
+            "command": "nc -lvnp 4444"
+        },
+        {
+            "user": "root",
+            "pid": "111",
+            "cpu": "0.0",
+            "memory": "0.0",
+            "command": "ps aux"
+        }
+    ],
+    "network_activity": [
+        {
+            "port": "42372",
+            "process": "unknown"
+        },
+        {
+            "port": "4444",
+            "process": "nc"
+        },
+        {
+            "port": "22",
+            "process": "sshd"
+        },
+        {
+            "port": "46181",
+            "process": "unknown"
+        },
+        {
+            "port": "22",
+            "process": "sshd"
+        }
+    ],
+    "users": [
+        {
+            "username": "root",
+            "uid": "0",
+            "gid": "0",
+            "home": "/root",
+            "shell": "/bin/bash"
+        },
+        {
+            "username": "daemon",
+            "uid": "1",
+            "gid": "1",
+            "home": "/usr/sbin",
+            "shell": "/usr/sbin/nologin"
+        },
+        {
+            "username": "bin",
+            "uid": "2",
+            "gid": "2",
+            "home": "/bin",
+            "shell": "/usr/sbin/nologin"
+        },
+        {
+            "username": "sys",
+            "uid": "3",
+            "gid": "3",
+            "home": "/dev",
+            "shell": "/usr/sbin/nologin"
+        },
+        {
+            "username": "sync",
+            "uid": "4",
+            "gid": "65534",
+            "home": "/bin",
+            "shell": "/bin/sync"
+        },
+        {
+            "username": "games",
+            "uid": "5",
+            "gid": "60",
+            "home": "/usr/games",
+            "shell": "/usr/sbin/nologin"
+        },
+        {
+            "username": "man",
+            "uid": "6",
+            "gid": "12",
+            "home": "/var/cache/man",
+            "shell": "/usr/sbin/nologin"
+        },
+        {
+            "username": "lp",
+            "uid": "7",
+            "gid": "7",
+            "home": "/var/spool/lpd",
+            "shell": "/usr/sbin/nologin"
+        },
+        {
+            "username": "mail",
+            "uid": "8",
+            "gid": "8",
+            "home": "/var/mail",
+            "shell": "/usr/sbin/nologin"
+        },
+        {
+            "username": "news",
+            "uid": "9",
+            "gid": "9",
+            "home": "/var/spool/news",
+            "shell": "/usr/sbin/nologin"
+        },
+        {
+            "username": "uucp",
+            "uid": "10",
+            "gid": "10",
+            "home": "/var/spool/uucp",
+            "shell": "/usr/sbin/nologin"
+        },
+        {
+            "username": "proxy",
+            "uid": "13",
+            "gid": "13",
+            "home": "/bin",
+            "shell": "/usr/sbin/nologin"
+        },
+        {
+            "username": "www-data",
+            "uid": "33",
+            "gid": "33",
+            "home": "/var/www",
+            "shell": "/usr/sbin/nologin"
+        },
+        {
+            "username": "backup",
+            "uid": "34",
+            "gid": "34",
+            "home": "/var/backups",
+            "shell": "/usr/sbin/nologin"
+        },
+        {
+            "username": "list",
+            "uid": "38",
+            "gid": "38",
+            "home": "/var/list",
+            "shell": "/usr/sbin/nologin"
+        },
+        {
+            "username": "irc",
+            "uid": "39",
+            "gid": "39",
+            "home": "/run/ircd",
+            "shell": "/usr/sbin/nologin"
+        },
+        {
+            "username": "gnats",
+            "uid": "41",
+            "gid": "41",
+            "home": "/var/lib/gnats",
+            "shell": "/usr/sbin/nologin"
+        },
+        {
+            "username": "nobody",
+            "uid": "65534",
+            "gid": "65534",
+            "home": "/nonexistent",
+            "shell": "/usr/sbin/nologin"
+        },
+        {
+            "username": "_apt",
+            "uid": "100",
+            "gid": "65534",
+            "home": "/nonexistent",
+            "shell": "/usr/sbin/nologin"
+        },
+        {
+            "username": "systemd-network",
+            "uid": "101",
+            "gid": "102",
+            "home": "/run/systemd",
+            "shell": "/usr/sbin/nologin"
+        },
+        {
+            "username": "systemd-resolve",
+            "uid": "102",
+            "gid": "103",
+            "home": "/run/systemd",
+            "shell": "/usr/sbin/nologin"
+        },
+        {
+            "username": "messagebus",
+            "uid": "103",
+            "gid": "104",
+            "home": "/nonexistent",
+            "shell": "/usr/sbin/nologin"
+        },
+        {
+            "username": "systemd-timesync",
+            "uid": "104",
+            "gid": "105",
+            "home": "/run/systemd",
+            "shell": "/usr/sbin/nologin"
+        },
+        {
+            "username": "sshd",
+            "uid": "105",
+            "gid": "65534",
+            "home": "/run/sshd",
+            "shell": "/usr/sbin/nologin"
+        },
+        {
+            "username": "testuser",
+            "uid": "1000",
+            "gid": "1000",
+            "home": "/home/testuser",
+            "shell": "/bin/sh"
+        }
+    ],
+    "cron_jobs": [
+        {
+            "schedule": "* * * * *",
+            "command": "/tmp/backdoor.sh"
+        }
+    ],
+    "login_activity": [
+        {
+            "user": "testuser",
+            "source_ip": "172.18.0.2"
+        },
+        {
+            "user": "testuser",
+            "source_ip": "172.18.0.2"
+        }
+    ]
 }

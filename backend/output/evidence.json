@@ -38,7 +38,7 @@
             },
             {
                 "user": "root",
-                "pid": "93",
+                "pid": "153",
                 "cpu": "0.0",
                 "memory": "0.0",
                 "command": "ps aux"
@@ -279,12 +279,7 @@
             "description": "Suspicious cron job detected: /tmp/backdoor.sh"
         },
         {
-            "severity": "INFO",
-            "type": "Login Activity",
-            "description": "User testuser logged in from 172.18.0.2"
-        },
-        {
-            "severity": "INFO",
+            "severity": "LOW",
             "type": "Login Activity",
             "description": "User testuser logged in from 172.18.0.2"
         }

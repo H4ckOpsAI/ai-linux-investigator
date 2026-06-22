@@ -1,24 +1,27 @@
-def analyze_logins(login_activity):
+def analyze_logins(logins):
 
     findings = []
 
-    for login in login_activity:
+    seen = set()
 
-        user = login.get("user", "")
-        source_ip = login.get("source_ip", "")
+    for login in logins:
+
+        user = login.get("user")
+        source_ip = login.get("source_ip")
+
+        identifier = (user, source_ip)
+
+        if identifier in seen:
+            continue
+
+        seen.add(identifier)
 
         findings.append({
-            "severity": "INFO",
+            "severity": "LOW",
             "type": "Login Activity",
-            "description": f"User {user} logged in from {source_ip}"
+            "description": (
+                f"User {user} logged in from {source_ip}"
+            )
         })
-
-        if user == "root":
-
-            findings.append({
-                "severity": "HIGH",
-                "type": "Privileged Login",
-                "description": f"Root login detected from {source_ip}"
-            })
 
     return findings

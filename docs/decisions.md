@@ -204,3 +204,19 @@ Project success does not depend on chatbot functionality.
 ### Future Enhancement
 
 Implement a conversational interface capable of answering questions about generated investigation reports.
+
+
+### Future Improvements
+
+1. Convert Ubuntu container into custom image.
+
+2. Automatically start:
+   - sshd
+   - miner simulator
+   - netcat listener
+
+3. Install and configure rsyslog.
+
+4. Generate and parse auth.log.
+
+5. Add brute-force detection module.

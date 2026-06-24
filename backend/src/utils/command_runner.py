@@ -1,11 +1,12 @@
 import subprocess
-
+import shlex
 
 def run_command(command):
     try:
+        args = shlex.split(command)
         result = subprocess.check_output(
-            command,
-            shell=True,
+            args,
+            shell=False,
             text=True
         )
         return result

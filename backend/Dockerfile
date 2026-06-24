@@ -8,6 +8,9 @@ ENV PATH="/opt/venv/bin:$PATH"
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Scrub the virtual environment before it gets copied to the final stage
+RUN pip uninstall -y pip setuptools wheel || true
+
 # Final Stage
 FROM python:3.11-slim
 

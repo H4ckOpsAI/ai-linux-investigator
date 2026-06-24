@@ -1,6 +1,6 @@
 # AI Linux Investigator
 
-![Build Status](https://github.com/<YOUR-GITHUB-USERNAME>/ai-linux-investigator/actions/workflows/security.yml/badge.svg)
+![Build Status](https://github.com/H4ckOpsAI/ai-linux-investigator/actions/workflows/security.yml/badge.svg)
 ![Security Scan Status](https://img.shields.io/badge/Security_Scans-Passing-success)
 ![MITRE ATT&CK](https://img.shields.io/badge/MITRE-ATT%26CK-blue)
 

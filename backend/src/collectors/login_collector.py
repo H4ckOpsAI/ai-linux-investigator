@@ -1,7 +1,4 @@
-from src.utils.command_runner import run_command
-
+from src.utils.telemetry_reader import read_latest_telemetry
 
 def collect_login_activity():
-    return run_command(
-        "docker exec ubuntu-target last"
-    )
+    return read_latest_telemetry("logins.log")

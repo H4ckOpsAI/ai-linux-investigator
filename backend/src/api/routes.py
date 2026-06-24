@@ -4,8 +4,11 @@ from src.services.evidence_service import collect_all_evidence
 from src.services.investigation_service import investigate
 from src.services.ai_service import generate_ai_report
 
-router = APIRouter()
+router = APIRouter(prefix="/api")
 
+@router.get("/health")
+def health_check():
+    return {"status": "ok"}
 
 @router.get("/investigate")
 def run_investigation():

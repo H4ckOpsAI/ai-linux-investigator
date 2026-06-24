@@ -1,0 +1,30 @@
+services:
+  ubuntu-target:
+    build:
+      context: ./lab/ubuntu-target
+      dockerfile: Dockerfile
+    container_name: ubuntu-target
+    restart: unless-stopped
+    volumes:
+      - lab-telemetry:/telemetry
+    networks:
+      - lab-net
+
+  attacker:
+    build:
+      context: ./lab/attacker
+      dockerfile: Dockerfile
+    container_name: attacker
+    restart: unless-stopped
+    depends_on:
+      - ubuntu-target
+    networks:
+      - lab-net
+
+volumes:
+  lab-telemetry:
+    name: ai_investigator_telemetry
+
+networks:
+  lab-net:
+    name: ai_investigator_lab_net

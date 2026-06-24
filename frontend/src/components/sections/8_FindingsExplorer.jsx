@@ -54,7 +54,18 @@ export const FindingsExplorer = ({ findings, onEvidenceJump, onEntityClick }) =>
                     <SeverityBadge level={finding.severity?.toLowerCase()} />
                     <span className="text-sm font-mono text-gray-500">ID: FND-{idx.toString().padStart(4, '0')}</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-white leading-tight">{finding.type}</h3>
+                  <h3 className="text-2xl font-bold text-white leading-tight mb-3">{finding.type}</h3>
+                  {finding.mitre && finding.mitre.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                      {finding.mitre.map((m, i) => (
+                        <div key={i} className="flex items-center gap-1.5 px-2.5 py-1 bg-white/5 border border-white/10 rounded-md">
+                          <span className="text-xs font-bold text-gray-400">{m.tactic}</span>
+                          <span className="text-gray-600">|</span>
+                          <span className="text-xs font-mono text-danger font-bold">{m.techniqueId}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 {/* Body */}

@@ -1,0 +1,157 @@
+name: DevSecOps Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  quality-gate:
+    name: Quality Gate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Frontend Build Check
+        working-directory: ./frontend
+        run: |
+          npm ci
+          npm run build
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Python Syntax & FastAPI Import Check
+        working-directory: ./backend
+        run: |
+          python -m py_compile $(find src -name "*.py")
+          pip install -r requirements.txt
+          python -c "from src.app import app"
+
+      - name: Docker Compose Config Check
+        run: docker compose config
+
+  sast-gate:
+    name: SAST Gate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Bandit
+        run: pip install bandit
+
+      - name: Run Bandit
+        run: bandit -r backend/src -c bandit.yaml -f json -o bandit-report.json -lll || true
+
+      - name: Upload Bandit Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: bandit-report
+          path: bandit-report.json
+
+      - name: Enforce Bandit Limits
+        run: bandit -r backend/src -c bandit.yaml -lll
+
+      - name: Install Semgrep
+        run: python -m pip install semgrep
+
+      - name: Run Semgrep
+        run: semgrep scan --config p/security-audit --config p/owasp-top-ten --config p/python --config p/javascript --json -o semgrep-report.json || true
+
+      - name: Upload Semgrep Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: semgrep-report
+          path: semgrep-report.json
+          
+      - name: Enforce Semgrep Limits
+        run: semgrep scan --config p/security-audit --config p/owasp-top-ten --config p/python --config p/javascript --error
+
+  secret-scanning:
+    name: Secret Scanning Gate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  container-security:
+    name: Container Security Gate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build Backend Image
+        run: docker build -t ai_investigator_backend:latest ./backend
+
+      - name: Build Frontend Image
+        run: docker build -t ai_investigator_frontend:latest ./frontend
+
+      - name: Generate Trivy Report (Backend)
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'ai_investigator_backend:latest'
+          format: 'json'
+          output: 'trivy-backend-report.json'
+          severity: 'HIGH,CRITICAL'
+          exit-code: '0'
+          ignore-unfixed: true
+          trivyignores: '.trivyignore'
+
+      - name: Generate Trivy Report (Frontend)
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'ai_investigator_frontend:latest'
+          format: 'json'
+          output: 'trivy-frontend-report.json'
+          severity: 'HIGH,CRITICAL'
+          exit-code: '0'
+          ignore-unfixed: true
+          trivyignores: '.trivyignore'
+
+      - name: Upload Trivy Reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-reports
+          path: trivy-*-report.json
+
+      - name: Enforce Trivy Limits (Backend)
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'ai_investigator_backend:latest'
+          severity: 'HIGH,CRITICAL'
+          exit-code: '1'
+          ignore-unfixed: true
+          trivyignores: '.trivyignore'
+
+      - name: Enforce Trivy Limits (Frontend)
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'ai_investigator_frontend:latest'
+          severity: 'HIGH,CRITICAL'
+          exit-code: '1'
+          ignore-unfixed: true
+          trivyignores: '.trivyignore'

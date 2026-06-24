@@ -8,13 +8,14 @@ import { InvestigationNarrative } from './components/sections/5_InvestigationNar
 import { ExecutiveAIReport } from './components/sections/7_ExecutiveAIReport';
 import { FindingsExplorer } from './components/sections/8_FindingsExplorer';
 import { EvidenceExplorer } from './components/sections/9_EvidenceExplorer';
+import { MitreAttackMatrix } from './components/sections/10_MitreAttackMatrix';
 import { EntityDrawer } from './components/common/EntityDrawer';
 import { AlertCircle, RotateCcw, Shield } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 function App() {
   const { 
-    evidence, findings, aiAnalysis, timeline, narrative, posture, attackChain, 
+    evidence, findings, aiAnalysis, timeline, narrative, posture, attackChain, mitreTechniques,
     loading, error, refresh 
   } = useInvestigationWorkspace();
 
@@ -113,6 +114,7 @@ function App() {
               <div className="max-w-[1600px] w-full mx-auto px-6 space-y-12 pb-24">
                 <AttackChain attackChain={attackChain} findings={findings} />
                 <ExecutiveAIReport aiAnalysis={aiAnalysis} />
+                <MitreAttackMatrix mitreTechniques={mitreTechniques} />
                 <AttackTimeline timeline={timeline} />
                 <InvestigationNarrative narrative={narrative} />
                 <FindingsExplorer findings={findings} onEvidenceJump={handleEvidenceJump} onEntityClick={handleEntityClick} />

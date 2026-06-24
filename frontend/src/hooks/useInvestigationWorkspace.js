@@ -3,6 +3,7 @@ import { generateTimeline } from '../utils/intelligence/timelineGenerator';
 import { buildNarrative } from '../utils/intelligence/narrativeBuilder';
 import { calculatePosture } from '../utils/intelligence/postureCalculator';
 import { mapAttackChain } from '../utils/intelligence/attackChainMapper';
+import { mapMitreTechniques } from '../utils/intelligence/mitreMapper';
 
 /**
  * Orchestrates fetching backend data and running derived intelligence transformers.
@@ -15,7 +16,8 @@ export const useInvestigationWorkspace = () => {
     timeline: [],
     narrative: [],
     posture: null,
-    attackChain: []
+    attackChain: [],
+    mitreTechniques: []
   });
   
   const [loading, setLoading] = useState(false);
@@ -25,7 +27,7 @@ export const useInvestigationWorkspace = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch('/investigate');
+      const response = await fetch('/api/investigate');
       
       if (!response.ok) {
         throw new Error(`API returned status: ${response.status}`);
@@ -38,20 +40,24 @@ export const useInvestigationWorkspace = () => {
       const findings = Array.isArray(rawData.findings) ? rawData.findings : [];
       const aiAnalysis = rawData.ai_analysis || "No AI analysis available at this time.";
 
+      // Phase 9.1: MITRE ATT&CK Enrichment
+      const { enrichedFindings, mitreTechniques } = mapMitreTechniques(findings);
+
       // Invoke Pure Function Intelligence Generators
-      const timeline = generateTimeline(findings, evidence);
+      const timeline = generateTimeline(enrichedFindings, evidence);
       const narrative = buildNarrative(timeline);
-      const posture = calculatePosture(findings, evidence);
-      const attackChain = mapAttackChain(findings, evidence);
+      const posture = calculatePosture(enrichedFindings, evidence);
+      const attackChain = mapAttackChain(enrichedFindings, evidence);
 
       setData({
         evidence,
-        findings,
+        findings: enrichedFindings,
         aiAnalysis,
         timeline,
         narrative,
         posture,
-        attackChain
+        attackChain,
+        mitreTechniques
       });
 
     } catch (err) {

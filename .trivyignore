@@ -1,0 +1,2 @@
+# Add specific CVE IDs here that are acceptable risks or false positives
+# Format: CVE-YYYY-NNNN

@@ -1,0 +1,8 @@
+# Bandit SAST Configuration
+exclude_dirs:
+  - 'tests'
+  - 'venv'
+
+skips:
+  # B104: bind to all interfaces (0.0.0.0) is required for dockerized FastAPI
+  - 'B104'

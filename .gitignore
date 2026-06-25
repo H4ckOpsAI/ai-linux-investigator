@@ -1,7 +1,32 @@
-*.log
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
 venv/
 .env
+
+# React/Vite
+node_modules/
+dist/
+build/
+
+# Docker
+.docker/
+
+# IDEs & Editor
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+*.log
 output/
+evidence/
+docs/*_compose_config.txt
+docs/*_docker_ps.txt
+docs/*_networks.txt
 

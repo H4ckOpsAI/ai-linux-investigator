@@ -1,4 +1,0 @@
-testuser pts/2        172.18.0.2       Mon Jun 15 05:17    gone - no logout
-testuser pts/2        172.18.0.2       Fri Jun 12 06:22 - 05:17 (2+22:54)
-
-wtmp begins Fri Jun 12 06:22:39 2026

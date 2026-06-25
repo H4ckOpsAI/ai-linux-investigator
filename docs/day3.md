@@ -1,6 +1,6 @@
-# Day 3 - Automated Evidence Collection
+# Day 3 - Evidence Collection Module
 
-Date: 16 June 2026
+**Date:** 16 June 2026
 
 ## Objective
 

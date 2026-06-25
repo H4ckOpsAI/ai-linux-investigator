@@ -1,6 +1,6 @@
-# Day 4 - Evidence Normalization
+# Day 4 - Data Normalization Module
 
-Date: 17 June 2026
+**Date:** 17 June 2026
 
 ## Objective
 

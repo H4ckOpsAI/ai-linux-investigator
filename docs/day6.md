@@ -1,6 +1,6 @@
-# Day 6 - Investigation Report Generation
+# Day 6 - AI Investigation Engine (LLM Prompts & Reporting)
 
-Date: 22 June 2026
+**Date:** 19 June 2026
 
 ## Objective
 

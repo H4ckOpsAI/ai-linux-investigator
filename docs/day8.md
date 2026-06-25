@@ -1,16 +1,8 @@
-# Day 8 Report – AI Linux Investigator
+# Day 8 - Advanced Dashboard Interface (React)
 
-## Project
+**Date:** 23 June 2026
 
-AI Linux Investigator
-
-## Date
-
-Day 8 Internship Progress Report
-
----
-
-# Objective
+## Objective
 
 The objective of Day 8 was to transform the backend investigation engine into a complete analyst-facing investigation workspace.
 
@@ -420,7 +412,7 @@ Ensures graceful failure handling.
 
 ---
 
-# Outcome
+## Outcome
 
 By the end of Day 8, the project evolved from a backend investigation engine into a complete AI-assisted security investigation workspace.
 

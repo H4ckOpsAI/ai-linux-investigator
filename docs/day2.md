@@ -1,6 +1,6 @@
 # Day 2 - Security Event Simulation
 
-Date: 15 June 2026
+**Date:** 15 June 2026
 
 ## Objective
 

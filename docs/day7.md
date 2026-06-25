@@ -1,16 +1,8 @@
-# Day 7 Report – AI Linux Investigator
+# Day 7 - Backend API Integration (FastAPI)
 
-## Project
+**Date:** 22 June 2026
 
-AI Linux Investigator
-
-## Date
-
-Day 7 Internship Progress Report
-
----
-
-# Objective
+## Objective
 
 The objective of Day 7 was to design and implement the core investigation engine capable of collecting Linux forensic evidence, identifying suspicious activity, and generating AI-assisted security assessments.
 
@@ -318,7 +310,7 @@ Successfully generated investigation reports from simulated attack scenarios.
 
 ---
 
-# Outcome
+## Outcome
 
 By the end of Day 7, the project successfully evolved from a simple data collection script into an AI-assisted Linux investigation engine capable of:
 

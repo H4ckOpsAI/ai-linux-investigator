@@ -1,6 +1,6 @@
-# Day 5 - Investigation Engine Implementation
+# Day 5 - AI Investigation Engine (Core Logic)
 
-Date: 22 June 2026
+**Date:** 18 June 2026
 
 ## Objective
 

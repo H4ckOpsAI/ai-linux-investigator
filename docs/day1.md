@@ -1,6 +1,6 @@
 # Day 1 - Security Lab Setup
 
-Date: 12 June 2026
+**Date:** 12 June 2026
 
 ## Objective
 

@@ -1,4 +1,6 @@
-# Day 9 – MITRE ATT&CK, Dockerization & DevSecOps
+# Day 9 - Dockerization & DevSecOps Pipeline
+
+**Date:** 24 June 2026
 
 ## Objective
 
